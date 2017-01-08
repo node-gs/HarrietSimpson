@@ -25,9 +25,26 @@ module.exports = {
           'sass-loader',
         ]
       },
+      { 
+        test: /\.js$/, 
+        loader: 'imports-loader?define=>false'
+      }
     ],
+  },
+  resolve: {
+  alias: {
+    'ScrollMagicGSAP': 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap',
+    'ScrollMagicjQuery': 'scrollmagic/scrollmagic/uncompressed/plugins/jquery.ScrollMagic'
+    }
   },
   devServer: {
     contentBase: path.resolve(__dirname, './src'),  // New
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        ScrollMagic: "scrollmagic"
+    })
+  ],
 };
